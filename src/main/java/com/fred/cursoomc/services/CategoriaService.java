@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fred.cursoomc.domain.Categoria;
 import com.fred.cursoomc.repositories.CategoriaRepository;
+import com.fred.cursoomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -16,6 +17,9 @@ public class CategoriaService {
 	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 		}
+	
+	
 }
