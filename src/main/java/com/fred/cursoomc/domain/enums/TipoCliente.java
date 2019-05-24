@@ -2,8 +2,8 @@ package com.fred.cursoomc.domain.enums;
 
 public enum TipoCliente {
       
-	PESSOAFISICA(0,"Pessoa Física"),
-	PESSOAJURIDICA(1,"Pessoa Jurídica");
+	PESSOAFISICA(1,"Pessoa Física"),
+	PESSOAJURIDICA(2,"Pessoa Jurídica");
 	
 	private int cod;
 	private String  descricao;
@@ -22,9 +22,12 @@ public enum TipoCliente {
 	}
 	
 	public static TipoCliente toEnum(Integer codigo) {
-		if(codigo == null) return null;
+		if(codigo == null) {
+			return null;
+		}
 		for(TipoCliente x  : TipoCliente.values()) {
-			if(x.equals(codigo)) {
+			System.out.println(x);
+			if(codigo.equals(x.getCod())) {
 				return x;
 			}
 		}

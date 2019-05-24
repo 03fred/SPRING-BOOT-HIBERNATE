@@ -12,11 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.CollectionId;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fred.cursoomc.domain.enums.TipoCliente;
 
 @Entity
@@ -31,6 +29,7 @@ public class Cliente implements Serializable {
 	private String cpfOucnpj;
 	private Integer tipo;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
     
@@ -51,7 +50,7 @@ public class Cliente implements Serializable {
 	}
 
 	public TipoCliente getTipo() {
-		return TipoCliente.toEnum(tipo);
+		return TipoCliente.toEnum(this.tipo);
 	}
 
 	public void setTipo(TipoCliente tipo) {
