@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fred.cursoomc.domain.Categoria;
 import com.fred.cursoomc.domain.Cidade;
+import com.fred.cursoomc.domain.Cliente;
+import com.fred.cursoomc.domain.Endereco;
 import com.fred.cursoomc.domain.Estado;
 import com.fred.cursoomc.domain.Produto;
+import com.fred.cursoomc.domain.enums.TipoCliente;
 import com.fred.cursoomc.repositories.CategoriaRepository;
 import com.fred.cursoomc.repositories.CidadeRepository;
+import com.fred.cursoomc.repositories.ClienteRepository;
+import com.fred.cursoomc.repositories.EnderecoRepository;
 import com.fred.cursoomc.repositories.EstadoRepository;
 import com.fred.cursoomc.repositories.ProdutoRepository;
 
@@ -30,6 +35,12 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired 
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	
 	public static void main(String[] args) {
@@ -69,6 +80,15 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+		
+		Cliente cli1 = new Cliente(null,"Maria Silva" ,"maria@gmail.com","12312313",TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("1231312321","112321312312"));
+		Endereco e1 = new Endereco(null, "Rua flores", "330", "casa", "g1", "asdfsd", cli1, c1);
+		cli1.getEnderecos().add(e1);
+		
+		clienteRepository.save(cli1);
+		enderecoRepository.save(e1);
+
 	}
 
 	
