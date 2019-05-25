@@ -106,7 +106,7 @@ public class CursomcApplication implements CommandLineRunner {
 		clienteRepository.save(cli1);
 		enderecoRepository.save(e1);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
 		Pedido ped1 = new Pedido(null,sdf.parse("10/09/2017 10:32"), cli1, e1);
 		Pedido ped2 = new Pedido(null,sdf.parse("10/09/2018 10:32"), cli1, e1);
