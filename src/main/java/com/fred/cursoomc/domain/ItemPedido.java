@@ -27,6 +27,10 @@ public ItemPedido(Pedido pedido, Produto produto, double desconto, Integer quant
 	this.preco = preco;
 }
 
+public double getSubtotal() {
+	return (preco - desconto) * quantidade;
+	
+}
 public ItemPedidoPk getId() {
 	return id;
 }

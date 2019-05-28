@@ -47,6 +47,8 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
+	
+	
 	public Pedido(Integer id, Date instante, Cliente cliente, Endereco endereco) {
 		super();
 		this.id = id;
@@ -55,6 +57,14 @@ public class Pedido implements Serializable {
 		this.endereco = endereco;
 	}
 
+	public double getValorTotal() {
+		double soma =0;
+		for(ItemPedido ped : pedidos) {
+			soma = ped.getSubtotal() +soma;
+		}
+		return soma;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
