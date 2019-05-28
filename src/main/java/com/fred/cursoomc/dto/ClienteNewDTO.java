@@ -2,18 +2,32 @@ package com.fred.cursoomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.fred.cursoomc.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@NotEmpty(message="Campo não pode ser vazio")
+	@Length(min=5,max=50,message="o tamanho deve ser entre 5 e 50 caracteres")
 	private String nome;
+	@NotEmpty(message="Campo não pode ser vazio")
+	@Email(message="email não valido")
 	private String email;
+	@NotEmpty(message="Campo não pode ser vazio")
 	private String cpfOucnpj;
 	private Integer tipo;
 	private String logradouro;
 	private String numero;
 	private String complemento;
 	private String bairro;
+	@NotEmpty(message="Campo não pode ser vazio")
 	private String cep;
+	@NotEmpty(message="Campo não pode ser vazio")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;

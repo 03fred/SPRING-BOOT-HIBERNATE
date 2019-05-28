@@ -2,6 +2,7 @@ package com.fred.cursoomc.resources.exceptions;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.NotReadablePropertyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -45,4 +46,14 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	
 	}
+	
+	@ExceptionHandler(NotReadablePropertyException.class)
+	public ResponseEntity<StandardError> NotReadablePropertyException(NotReadablePropertyException e, HttpServletResponse request){
+		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(),
+				"Erro de validação de cpf ou cnpj",System.currentTimeMillis());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	
+	}
+	
 }
